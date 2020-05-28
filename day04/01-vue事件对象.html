@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>事件对象</title>
+</head>
+<body>
+    <div id="app">
+        <div>
+            {{ msg }} {{ count }}
+        </div>
+
+        <button @click="handleClick">点击</button>
+        <button @click="handleClick2($event,2)">点击 +2</button>
+    </div>
+
+    <script>
+        let vm = new Vue({
+            el:"#app",
+            data:{
+                msg:"hello world",
+                count:0
+            },
+            methods:{
+                handleClick(event){
+                    // 1. 在绑定事件的时候,如果不加括号,默认第一个参数是事件对象
+                    console.log($event)
+                    console.log(event)
+                    this.count++
+                },
+                handleClick2($event,num){
+                    // 2. 如果在绑定事件的时候添加了括号,vue会认为你是需要传递参数的,默认参数都为形参
+                    // 如果需要传递参数,那么就需要手动的传递事件对象
+                    console.log($event)
+
+                    // 3. 不管给事件绑定方法加不加括号,在事件函数中都有一个叫做event的变量
+                    // 这个event 默认就是事件对象,所有千万不要重名
+                    console.log(event)
+                    this.count += num
+                    console.log("handleClick2")
+                }
+            }
+        })
+
+        // dom.onclick = function(ev){
+        //     window.event
+        // }
+    </script>
+</body>
+</html>

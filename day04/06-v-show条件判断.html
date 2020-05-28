@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>v-model双向数据绑定</title>
+</head>
+<body>
+    <div id="app">
+<!--        <div v-if="isShow">我显示了</div>-->
+
+        <div v-show="isShow">我显示了</div>
+
+
+        <button @click="isShow = !isShow">切换</button>
+
+
+    </div>
+<!--
+    v-if有很大的切换开销
+    v-show有很大的初始开销
+
+    如果DOM元素需要频繁的切换 选择v-show
+
+-->
+    <script>
+
+        let vm = new Vue({
+            el:"#app",
+            data:{
+               isShow:false
+            },
+            methods:{
+
+            }
+        })
+
+
+    </script>
+</body>
+</html>

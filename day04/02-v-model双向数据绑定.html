@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>v-model双向数据绑定</title>
+</head>
+<body>
+    <div id="app">
+<!--        1. 利用动态属性绑定v-bind和事件绑定v-on来模拟双向数据绑定-->
+<!--        <input type="text" :value="msg" ref="input" @input="handleInput">-->
+
+        <input type="text" v-model="msg">
+    </div>
+
+    <script>
+        let vm = new Vue({
+            el:"#app",
+            data:{
+                msg:"hello"
+            },
+            methods:{
+                handleInput(event){
+
+                    // console.log(event.target.value)
+
+                    // 1. 通过事件对象的事件源获取DOM元素的值
+                    // this.msg  = event.target.value
+
+                    // 2.  通过ref属性获取DOM元素的值
+                    // console.log(this.$refs.input)
+                    this.msg  = this.$refs.input.value
+                }
+            }
+        })
+
+
+    </script>
+</body>
+</html>

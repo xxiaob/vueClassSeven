@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>v-model双向数据绑定</title>
+</head>
+<body>
+    <div id="app">
+<!--    1. v-if 条件判断 v-else-->
+<!--        <div v-if="bool">你现在能看到我</div>-->
+<!--        <div v-else>我是v-else的部分</div>-->
+
+<!--        2. v-if  v-else-if-->
+<!--        <div v-if="err">网络连接失败</div>-->
+
+<!--        <div v-else-if="success">网络连接成功</div>-->
+<!--        <div v-else>网络连接有问题</div>-->
+
+<!--        <button @click="err =!err">toggle err</button>-->
+<!--        <button @click="success =!success">toggle success</button>-->
+
+
+<!--       3. template模板标签 -->
+
+        <div class="login">
+            <template v-if="isLogin">
+                <h2>登录</h2>
+                <input type="text" key="login">
+            </template>
+            <template v-else>
+                <h2>注册</h2>
+                <input type="text" key="register">
+            </template>
+        </div>
+        <button @click="isLogin = !isLogin">{{ isLogin? "注册": "登录"}}</button>
+    </div>
+
+    <script>
+
+
+        let vm = new Vue({
+            el:"#app",
+            data:{
+                bool:false,
+                err:true,
+                success:true,
+                isLogin: true
+            },
+            methods:{
+
+            }
+        })
+
+
+    </script>
+</body>
+</html>

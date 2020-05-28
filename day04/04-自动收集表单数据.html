@@ -1,0 +1,137 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>自动收集表单数据</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+<div class="container">
+    <div class="jumbotron">
+        <h1>自动收集表单数据</h1>
+
+    </div>
+
+   <div class="row" id="app">
+       <form class="col-xs-6 col-xs-offset-3">
+           <div class="form-group">
+               <label for="exampleuser">用户名:</label>
+               <input
+                       type="text"
+                       class="form-control"
+                       id="exampleuser"
+                       placeholder="请输入用户名"
+                       v-model="register.username"
+               >
+           </div>
+           <div class="form-group">
+               <label for="password">密码:</label>
+               <input
+                       type="password"
+                       class="form-control"
+                       id="password"
+                       placeholder="请输入密码"
+                       v-model="register.password"
+               >
+           </div>
+           <div class="form-group">
+               <label >性别:</label>
+               <div class="input-grop">
+                   <label class="radio-inline" for="male">
+                       <input type="radio" id="male" value="男"  v-model="register.sex"> 男
+                   </label>
+                   <label class="radio-inline" for="female">
+                       <input type="radio" id="female" value="女"  v-model="register.sex"> 女
+                   </label>
+               </div>
+           </div>
+           <div class="form-group">
+               <label >爱好:</label>
+               <div class="input-grop">
+                   <label class="checkbox-inline" for="baseketball">
+                       <input type="checkbox" id="baseketball" value="篮球"  v-model="register.like"> 篮球
+                   </label>
+                   <label class="checkbox-inline" for="football">
+                       <input type="checkbox" id="football" value="足球" v-model="register.like"> 足球
+                   </label>
+                   <label class="checkbox-inline" for="swimming">
+                       <input type="checkbox" id="swimming" value="游泳" v-model="register.like"> 游泳
+                   </label>
+               </div>
+           </div>
+           <div class="form-group">
+               <label >省份:</label>
+               <select class="form-control" v-model="register.province">
+                   <option value="北京">北京</option>
+                   <option value="上海">上海</option>
+                   <option value="广东">广东</option>
+                   <option value="湖南">湖南</option>
+                   <option value="湖北">湖北</option>
+                   <option value="江苏">江苏</option>
+                   <option value="安徽">安徽</option>
+               </select>
+           </div>
+
+           <button type="submit" class="btn btn-primary"  @click="handleClick">Submit</button>
+
+
+
+       </form>
+   </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+ let vm = new Vue({
+     el:'#app',
+     data:{
+         register:{
+             username: "",
+             password: "",
+             sex: "男",
+             like: [],
+             province: "北京"
+         }
+     },
+     methods:{
+         handleClick(event){
+             // 阻止默认事件
+             event.preventDefault();
+
+             // 判断用户名有没有登录
+             if(!this.register.username) {
+                 console.log("用户名必须输入")
+                 return;
+             }
+             // 用户名的位数必须大于4位
+             if(this.register.username.length < 4){
+                 console.log("字符串最少位4位")
+                 return;
+             }
+
+             console.log(this.register);
+
+             // 发送ajax请求
+             // $.post({
+             //     url:'',
+             //     data:this.register,
+             //     success(){},
+             //
+             // })
+         }
+     }
+ })
+</script>
+
+</body>
+</html>
