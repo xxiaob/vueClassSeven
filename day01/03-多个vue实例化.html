@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+<!-- 这是被vue第一个实例化对象接管的DOM元素-->
+<div id="app">
+    {{username}}
+</div>
+
+<!--被vue第二个实例化对象接管的DOM元素-->
+<div class="app2">
+    {{ username }}
+    <button @click="handleClick">点击改变姓名</button>
+</div>
+
+<script>
+    // 这是第一个vue实例
+    let vm = new Vue({
+        el:"#app",
+        data:{
+            username:"haha"
+        },
+
+    })
+
+
+    // 这是第二个vue实例
+    let vm2 = new Vue({
+        el:".app2",  // querySelect("[name="]")
+        data: {
+            username: "轻歌"
+        },
+        methods:{
+            handleClick(){
+                vm.username ="李四"
+                this.username = "张三"
+            }
+        }
+    })
+
+//    vue 的数据驱动模型, vue的一切以数据为中心,数据一变,视图就会发生变化
+</script>
+</body>
+</html>
