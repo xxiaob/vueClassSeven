@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+    <style>
+        .red{
+            color: red;
+        }
+        .blue{
+            color: blue;
+        }
+        .fontsize{
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div>{{ msg}}</div>
+    <div v-text="msg"></div>
+    <div v-html="msg"></div>
+    <img v-bind:src="img" alt="">
+
+<!--    <div v-bind:class="className" ref="div">大家好,我叫渣渣辉</div>-->
+    <div class="className" ref="div">大家好,我叫渣渣辉</div>
+    <button v-on:click="handleClick">切换颜色</button>
+</div>
+
+<script>
+    let vm = new Vue({
+        el:"#app",
+        data:{
+            msg:"Hello World",
+            className:'blue',
+            img: "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3186706237,512838661&fm=26&gp=0.jpg"
+        },
+        methods:{
+            handleClick(){
+                console.log("click")
+                // 回归到原生js的开发了
+                // console.log(this.$refs.div);
+                // let oDiv = this.$refs.div;
+                // oDiv.className = oDiv.className == "red"?"blue":'red'
+
+                // 通过vue 动态改变数据,来改变class类名
+                this.className = this.className == "blue"?"red":"blue"
+            }
+        }
+    })
+
+    setTimeout(function(){
+        vm.img = "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=276726310,210124874&fm=26&gp=0.jpg"
+    },2000)
+</script>
+</body>
+</html>

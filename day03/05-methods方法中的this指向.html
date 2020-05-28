@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+<body>
+<div id="app">
+    <div>
+        点击次数: {{ count }}
+    </div>
+    <button @click=" handleClick1 ">普通方法</button>
+    <button @click=" handleClick2 ">ES6简写方法</button>
+    <button @click=" handleClick3 ">ES6箭头函数的写法</button>
+</div>
+
+
+
+<script>
+
+
+
+    let vm = new Vue({
+        el:"#app",
+        data:{
+            count:0
+        },
+        methods:{
+            handleClick1: function(){
+                // 普通方法
+                console.log(this)   // vue的实例对象 ,这里就是vm
+
+            },
+            handleClick2(){
+                // 方法的简写方式
+                console.log(this)   // vue的实例对象 ,这里就是vm
+
+                setTimeout(() => {
+                    console.log(this)
+                    this.count++
+                },2000)
+            },
+            handleClick3:() => {
+                // 箭头函数
+                console.log(this)  // window
+            }
+        }
+    })
+    // vue 方法不推荐使用箭头函数(不能和不推荐是两回事)
+    // 注意不推荐使用箭头函数的位置, 不要进入所有vue项目中都不使用箭头还少的为误区
+
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+    <style>
+        .red{
+            color: red;
+        }
+        .blue{
+            color: blue;
+        }
+        .bgblack{
+            background: #ccc;
+        }
+        .bgpink{
+            background: pink;
+        }
+        .fontsize{
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+<!--传统的style属性的使用-->
+<!--    <div style="color:red;font-size:50px;">大家好,我是渣渣辉</div>-->
+
+<!--    动态绑定style属性-->
+<!--    <div :style="style">大家好,我是渣渣辉</div>-->
+
+<!--    对象式的写法
+-->
+<!--    <div :style="{color:'red',fontSize:'50px'}">大家好,我是渣渣辉</div>-->
+    <div :style="[style,fontSize]">大家好,我是渣渣辉</div>
+    <div :style="[style2,fontSize]">大家好,我是渣渣辉</div>
+
+
+    <button v-on:click="handleClick">点击切换颜色</button>
+</div>
+
+<script>
+
+    let vm = new Vue({
+        el:"#app",
+        data:{
+            color:"blue",
+            // style:"color:red;font-size:50px;",
+            style:{color:'red'},
+            style2:{color:'blue'},
+            fontSize:{fontSize:'50px'}
+        },
+        methods:{
+            handleClick(){
+                this.color = "pink"
+            }
+        }
+    })
+
+
+</script>
+</body>
+</html>
