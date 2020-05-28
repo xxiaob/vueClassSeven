@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+<div id="app">
+    {{ arr }}
+
+</div>
+
+<script>
+    // 基本数据类型的数据
+    // let data = {
+    //     name:"张三",
+    //     age:''
+    // }
+    // Object.freeze(data)
+
+    // 数据类型为对象类型的响应变化
+    // let data = {
+    //     student:{
+    //         name:"张三",
+    //     }
+    // }
+
+    // 数据类型为数组的响应变化
+    let data = {
+        arr: [10,20,30,40]
+    }
+
+
+    let vm = new Vue({
+        // options 选项对象,配置对象
+        el:document.querySelector("#app"),
+        data: data
+    })
+
+
+
+
+    setTimeout(function(){
+        // 数据为对象类型的响应变化
+        // data.student  = {name :"李四"}
+        // data.student.name = "李四"
+        // data.student.age = 20
+
+        // vm.$set(data.student,'age',20)  // $set添加的属性会自动被响应式监听
+
+        // data.student = {
+        //     name:"张三",
+        //     age:22,
+        //
+        // }
+        // data.student = Object.assign({},data.student,{
+        //     age:20
+        // })
+
+        // data.arr[0]  = 30
+
+        // data.arr = [30,20,30,40]
+
+        // 数组的方法分为两类, 变异 方法, 非变异方法
+        // 变异方法是会修改原数组的方法 push pop unshift shift reverse sort splice
+        // 非变异方法不会原数组的方法
+        // data.arr.push(50)
+        // data.arr.sort(function(a,b){
+        //     return b-a
+        // })
+        data.arr = data.arr.map(item => {
+           return item*2
+       })
+
+        // 变异方法的使用会修改原数组,进而触发响应系统,然后改变页面内容
+        // 非变异方法不会修改原数组, 不会触发响应系统,如果想触发响应系统,只有整体覆盖
+    },2000)
+
+
+
+
+</script>
+</body>
+</html>

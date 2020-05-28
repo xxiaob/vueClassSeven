@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+    <style>
+        [v-cloak]{
+            display:none
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+<!--        通过Mustacher语法渲染页面-->
+    <div v-cloak>{{ msg }}</div>
+
+<!--  v-text指令渲染内容  -->
+<!--    <div v-text="message">-->
+<!--        <h2>你好</h2>-->
+<!--    </div>-->
+
+<!--    v-html指令渲染内容-->
+<!--    <div v-html="message">-->
+<!--        <h2>你好</h2>-->
+<!--    </div>-->
+
+<!--    v-once指令 只渲染一次-->
+    <div v-once>
+        {{msg}}
+    </div>
+
+    <div v-pre>
+        {{msg}}
+    </div>
+
+
+</div>
+
+<script>
+
+
+    let vm = new Vue({
+        // options 选项对象,配置对象
+        el:document.querySelector("#app"),
+        data: {
+            msg:"hello vue",
+            message:"<h3>我是h3标签</h3>"
+        },
+
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

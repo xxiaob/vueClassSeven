@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+<div id="app">
+    {{ arr }}
+    {{ stateDoing() }}
+</div>
+
+<script>
+
+
+    // let vm = new Vue({
+    //     // options 选项对象,配置对象
+    //     el:document.querySelector("#app"),
+    //     data: {
+    //         state:1
+    //     },
+    //     methods:{
+    //         stateDoing(){
+    //             let arr = ["苹果","梨子","香蕉"];
+    //             console.log(this);
+    //             return arr[this.state]
+    //         },
+    //
+    //     }
+    // })
+
+
+    let vm = new Vue({
+        // options 选项对象,配置对象
+        el:document.querySelector("#app"),
+        data: {
+            arr :[10,50,60,70,80,20]
+        },
+        methods:{
+            stateDoing(){
+                return this.arr.filter(num => {
+                    return num >= 50
+                })
+
+
+            },
+
+        }
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
