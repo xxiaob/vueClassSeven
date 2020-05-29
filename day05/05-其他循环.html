@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-for指令的基本使用</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+<!--    1. 二维数组的循环-->
+
+
+<!--    <ul>-->
+<!--        <li v-for="student in students " :key="student.name">-->
+<!--            <h4>姓名: {{ student.name }}</h4>-->
+<!--            <div>-->
+<!--                爱好:-->
+<!--                <div v-for="like in student.like">-->
+<!--                    {{ like }}-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </li>-->
+<!--    </ul>-->
+
+<!--    2.循环字符串-->
+<!--    <div v-for="value in 'abcdefg'">-->
+<!--        {{value}}-->
+<!--    </div>-->
+
+<!-- 3.循环数字-->
+<!--    <div v-for="value in 20">-->
+<!--        {{value}}-->
+<!--    </div>-->
+
+</div>
+
+
+<script>
+
+    let vm = new Vue({
+        el:"#app",
+        data:{
+
+            students: [
+                {
+                    name:"张三",
+                    like:["篮球","足球","乒乓球"]
+                },
+                {
+                    name:"MSFDC",
+                    like:["吃","喝","玩"]
+                },
+                {
+                    name:"Demi",
+                    like:["吃饭","睡觉","打豆豆"]
+                }
+            ]
+
+        },
+        methods:{
+
+
+        },
+        computed:{
+
+        }
+    })
+</script>
+</body>
+</html>

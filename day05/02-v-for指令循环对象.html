@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-for指令的基本使用</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+<!-- v-for指令循环对象-->
+<!--    1. 取出对象中的值-->
+<!--    <div v-for="value in user">-->
+<!--        {{ value }}-->
+<!--    </div>-->
+
+<!--    2. 取出对象的属性(key)-->
+<!--    <div v-for="(value,key) in user">-->
+<!--        {{key }} : {{ value }}-->
+<!--    </div>-->
+
+<!-- 3. 取出对象的索引 -->
+    <div v-for="(value,key,index) in user">
+        {{index}} : {{key}} : {{ value }}
+    </div>
+</div>
+
+
+<script>
+
+
+
+    let vm = new Vue({
+        el:"#app",
+        data:{
+            user: {
+                username:"张三",
+                age: 16,
+                sex:"男",
+                like: ["游泳","篮球","跆拳道"]
+            }
+
+        },
+        methods:{
+
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-for指令的基本使用</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <h2>水果店的水果</h2>
+<!-- v-for 不要和 v-if v-show一起使用-->
+<!--    <ul v-show="isOpen">-->
+<!--        <li v-for="fruit in fruits">-->
+<!--            {{ fruit.name }}: ${{ fruit.price }}元/斤-->
+<!--        </li>-->
+<!--    </ul>-->
+
+<!--   2. 过滤数据 -->
+
+    <ul>
+        <li  v-if="fruit.price>20"  >
+            {{ fruit.name }}: ${{ fruit.price }}元/斤
+        </li>
+    </ul>
+
+
+
+    <input type="text" v-model="filterprice">
+</div>
+
+
+<script>
+
+    let vm = new Vue({
+        el:"#app",
+        data:{
+            // fruits: ["苹果","香蕉","菠萝蜜","樱桃","榴莲"]
+            isOpen: false,
+            filterprice: 0,
+            fruits: [
+                {
+                    name:"苹果",
+                    price: 10
+                },
+                {
+                    name:"香蕉",
+                    price: 12
+                },
+                {
+                    name:"菠萝蜜",
+                    price: 30
+                },
+                {
+                    name:"樱桃",
+                    price: 8
+                },
+                {
+                    name:"榴莲",
+                    price: 22
+                }
+            ]
+
+        },
+        methods:{
+            filterFruits(){
+                return this.fruits.filter(item => {
+                    return item.price > parseInt(this.filterprice)
+                })
+            }
+
+        },
+        computed:{
+            filter(){
+                return this.fruits.filter(item => {
+                    return item.price > parseInt(this.filterprice)
+                })
+            }
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-for指令的基本使用</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <h2>水果店的水果</h2>
+
+    <div v-for="(item,index) in fruits" :key="item.id">
+       <span>水果名:{{ item.name }}</span>
+    </div>
+
+
+</div>
+
+
+<script>
+
+
+    let vm = new Vue({
+        el:"#app",
+        data:{
+
+            fruits: [
+                {
+                    id:0,
+                    name:"苹果",
+                },
+                {
+                    id:1,
+                    name:"香蕉",
+                },
+                {
+                    id:2,
+                    name:"菠萝蜜",
+                },
+                {
+                    id:3,
+                    name:"樱桃",
+                },
+                {
+                    id:4,
+                    name:"榴莲",
+                }
+            ]
+
+        },
+        methods:{
+
+        }
+    })
+
+    setTimeout(function(){
+        // vm.fruits.push({
+        //     id: 5,
+        //     name:"提子"
+        // })
+
+        vm.fruits.splice(1,0,{
+            id: 5,
+            name:"提子"
+        })
+    },2000)
+</script>
+</body>
+</html>
