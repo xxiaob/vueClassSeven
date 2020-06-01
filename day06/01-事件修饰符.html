@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件修饰符</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .wrap{
+            width: 500px;
+            height: 500px;
+            background: pink;
+        }
+        .box{
+            width: 300px;
+            height: 300px;
+            background: skyblue;
+        }
+    </style>
+</head>
+<body>
+ <div id="app">
+
+<!--
+    1. 阻止事件冒泡
+        .stop
+
+    2. 阻止默认事件
+      .prevent
+
+    3. 将事件绑定到捕获阶段
+        .capture
+
+    4. 绑定只执行一次的事件
+        .once
+        事件第一次执行后就会被解除事件绑定
+
+    5. 只有但事发生在自己身上时,才会触发事件
+        .self
+        事件流传递过来的时候不会触发事件
+
+-->
+     <div class="wrap" @click.capture.once="handleClick">
+         点击
+         <div class="box" v-on:click.self="handleBox">
+             <a href="http://www.baidu.com" @click.prevent="handleA">百度</a>
+         </div>
+     </div>
+ </div>
+
+ <script>
+     let vm = new Vue({
+         el:"#app",
+         data: {
+
+         },
+         methods:{
+             // vue 默认绑定事件都是绑定在冒泡阶段
+             handleClick(){
+                 console.log("wrap")
+             },
+             handleBox(event){
+                 // console.log(event)
+
+                // 原生js阻止事件冒泡
+                // event.stopPropagation()
+
+                 console.log("box");
+
+
+             },
+             handleA(){
+                 // 原生js阻止默认事件
+                 // event.preventDefault();
+                 console.log("a")
+             }
+         }
+     })
+
+ </script>
+</body>
+</html>

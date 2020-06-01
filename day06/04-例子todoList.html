@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>例子:todoList</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+
+    </style>
+</head>
+<body>
+ <div id="app">
+    <div>
+        <input type="text" v-model="newDoing" @keyup.enter = "handleKeyup" />
+    </div>
+     <ul>
+         <li v-for="(value,index) in doing">
+             {{ value }}
+             <button @click="handleDelete(index)"> X </button>
+         </li>
+     </ul>
+ </div>
+
+ <script>
+     let vm = new Vue({
+         el:"#app",
+         data: {
+             newDoing:'',
+             doing:[
+                 "打豆豆",
+                 "睡觉",
+                 "吃饭"
+             ]
+         },
+         methods:{
+             handleKeyup(){
+                 // 将内容插入到数组开始位置
+                 this.doing.unshift(this.newDoing)
+
+                 // 清空输入框内容
+                 this.newDoing = '';
+             },
+             handleDelete(index){
+                 2
+
+                 // console.log("delete:"+index)
+                 // 1. 利用索引删除数组内容
+                 // this.doing.splice(index,1)
+
+                 //  2. 利用filter过滤掉不合要求的数据
+                 this.doing  = this.doing.filter((item,i) => {
+                     return i !== index
+                 })
+
+
+             }
+
+         }
+     })
+
+ </script>
+</body>
+</html>

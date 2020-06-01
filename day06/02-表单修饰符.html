@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表单修饰符</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+
+    </style>
+</head>
+<body>
+ <div id="app">
+<!--
+    1. number 表单修饰符
+        就是当你在表单中输入数字格式的字符串,会自动帮你转为数字类型收集数据
+        如果你在数字后面添加了字符,那么字符将会自动被忽略
+        如果在第一字符就输入字符, 那么将没发转为数字格式,将收集字符串类型的数据
+
+    2. trim
+        自动过滤掉用户输入字符串内容前后的空格
+
+    3. lazy
+        当失去焦点或者手动按下entry才会触发,收集数据
+-->
+    年龄: <input type="text" v-model.number.trim.lazy="age" >
+
+     用户名: <input type="text" v-model.trim="username">
+
+     爱好: <input type="text" v-model.lazy="like">
+
+
+ </div>
+
+ <script>
+     let vm = new Vue({
+         el:"#app",
+         data: {
+            age: 0,
+             username : "",
+             like:''
+         },
+         methods:{
+            aa(){}
+         }
+     })
+
+ </script>
+</body>
+</html>

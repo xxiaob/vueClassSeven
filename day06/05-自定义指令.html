@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>例子:todoList</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+
+    </style>
+</head>
+<body>
+ <div id="app">
+<!--     <input type="text" v-focus:argu.aa.bb="handleaa" >-->
+     <div v-blink >闪瞎你的眼睛</div>
+ </div>
+
+<!-- <div id="app2">-->
+
+<!--     <div v-blink>我是第二个vue实例</div>-->
+<!-- </div>-->
+
+ <script>
+     // console.dir(Vue)
+     // 只要在构造函数上处理的东西一般都是全局
+
+     // 自定义全局指令
+     // Vue.directive("focus",{
+     //     inserted(el){
+     //         console.log(arguments)
+     //         el.focus()
+     //     }
+     // })
+
+     // Vue.directive("blink",{
+     //     inserted(el){
+     //         let bol = true
+     //         setInterval(function(){
+     //             console.log(11)
+     //             el.style.color = bol ? "pink" : "skyblue"
+     //             bol = !bol
+     //         },500)
+     //     }
+     // })
+
+
+
+     let vm = new Vue({
+         el:"#app",
+         data: {
+            msg:"hello world"
+         },
+         methods:{
+            handleaa(){}
+         },
+         // 自定义局部指令
+         directives:{
+
+             "blink": {
+                 inserted(el){
+                     let bol = true
+                     setInterval(function(){
+                         console.log(11)
+                         el.style.color = bol ? "pink" : "skyblue"
+                         bol = !bol
+                     },500)
+                 }
+             }
+         }
+     })
+
+
+     let vm2 = new Vue({
+         el:"#app2"
+     })
+ </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>键盘修饰符</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+
+    </style>
+</head>
+<body>
+ <div id="app">
+     用户名: <input type="text"  ref="input" @keyup.shift.13="handleKeyup">
+
+ </div>
+ <input type="text" id="input">
+ <script>
+     let vm = new Vue({
+         el:"#app",
+         data: {
+            username: ""
+         },
+         methods:{
+             handleKeyup(){
+                 console.log('keyup')
+
+             //   1. 通过事件源获取DOM元素
+                 this.username = event.target.value
+
+
+             //    2. 通过ref属性
+             //     this.username = this.$refs.input.value
+             }
+         }
+     })
+
+ </script>
+</body>
+</html>
