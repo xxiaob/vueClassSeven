@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>computed 计算属性</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+ <div id="app">
+     <h3> 普通的 使用数据</h3>
+     <div>{{ msg }}</div>
+
+     <h3> 在Mustache语法中翻转字符串 </h3>
+     <div>{{ msg.split("").reverse().join("") }}</div>
+
+     <h3> 在方法中翻转字符串 </h3>
+     <div>{{ reverseMsg() }}</div>
+
+
+     <h3> 在计算属性中翻转字符串 </h3>
+     <div>{{ newMsg }}</div>
+
+     <div>
+         姓: <input type="text" v-model="firstname"><br/>
+         名: <input type="text" v-model="lastname"><br/>
+         全称: <input type="text" v-model="fullname">
+     </div>
+ </div>
+
+
+ <script>
+
+     let vm = new Vue({
+         el:"#app",
+         data: {
+             msg: "hello world",
+             firstname:"foo",
+             lastname:"bar"
+         },
+         methods:{
+             reverseMsg(){
+                 return  this.msg.split("").reverse().join("")
+             },
+             changeNewMsg(){
+                 this.newMsg = "hello vue"
+             }
+         },
+         computed:{
+             // 1. 计算属性的写法和方法一样
+             // newMsg(){
+             //     return  this.msg.split("").reverse().join("")
+             // }
+
+             // 2. 对象形式的计算属性
+             newMsg:{
+                 get(){
+                     return  this.msg.split("").reverse().join("")
+                 },
+                 set(value){
+                     console.log(value)
+                 }
+             },
+             fullname:{
+                 get(){
+                     console.log("get")
+                     return this.firstname + " " + this.lastname
+                 },
+                 set(value){
+                     console.log("set")
+
+                     // console.log(value)
+                     var names = value.split(" ")
+                     this.firstname = names[0]
+                     this.lastname = names[1]
+                 }
+             }
+         }
+     })
+
+
+
+
+ </script>
+</body>
+</html>

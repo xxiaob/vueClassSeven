@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>computed 计算属性</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+ <div id="app">
+
+ </div>
+
+
+ <script>
+
+     let vm = new Vue({
+         el:"#app",
+         data: {
+            fruit:{
+                name:"苹果",
+                price:20
+            }
+         },
+         watch:{
+             // 侦听引用类型的值是, 侦听是地址的变化
+
+             // fruit(newValue,oldValue){
+             //     console.log(newValue)
+             //     console.log(oldValue)
+             // }
+
+             // 只在侦听对象里一个或几个特定的属性是才会使用,
+             // 全面侦听对象的属性时不使用
+             // "fruit.price"(newValue,oldValue){
+             //     console.log(newValue)
+             //     console.log(oldValue)
+             // },
+             // "fruit.name"(newValue,oldValue){
+             //     console.log(newValue)
+             //     console.log(oldValue)
+             // }
+
+             // 设置深度监听
+             // fruit:{
+             //     handler(newValue,oldValue){
+             //         console.log(newValue)
+             //         console.log(oldValue)
+             //     },
+             //     deep:true, // 设置为深度监听,
+             //     immediate: true  // 立即执行一次侦听器函数
+             // }
+
+             newFruit:{
+                 handler(newValue,oldValue){
+                     console.log(newValue)
+                     console.log(oldValue)
+                 },
+                 deep:true, // 设置为深度监听,
+                 immediate: true  // 立即执行一次侦听器函数
+             }
+         },
+         methods:{
+
+         },
+         computed:{
+            newFruit(){
+                return JSON.parse(JSON.stringify(this.fruit))
+            }
+         }
+     })
+
+ </script>
+</body>
+</html>

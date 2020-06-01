@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>computed 计算属性</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+ <div id="app">
+
+ </div>
+
+
+ <script>
+
+
+
+     let vm = new Vue({
+         el:"#app",
+         data: {
+            msg : "hello",
+             fruit:{
+                name:"苹果",
+                 price:20
+             }
+         },
+         watch:{
+
+
+         },
+         methods:{
+
+         },
+         computed:{
+            newFruit(){
+                return JSON.parse(JSON.stringify(this.fruit))
+            }
+         }
+     })
+
+
+     // 在实例化对象上处理侦听器
+     vm.$watch("fruit", function(newValue,oldValue){
+         console.log(newValue)
+         console.log(oldValue)
+     },{
+         // 配置项
+         // deep:true
+         // immediata: true
+     })
+ </script>
+</body>
+</html>

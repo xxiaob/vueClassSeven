@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>computed 计算属性</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+ <div id="app">
+     <h2>水果店</h2>
+    <p>全选: <input type="checkbox" v-model="isAllSelect"></p>
+     <ul>
+         <li v-for="(fruit,index) in fruits" :key="index">
+             <input type="checkbox" v-model="fruit.isSelect">
+             {{ fruit.name }}: 价格 {{fruit.price}}元/斤
+         </li>
+     </ul>
+ </div>
+
+
+ <script>
+
+     let vm = new Vue({
+         el:"#app",
+         data: {
+
+            fruits: [
+                {
+                    name:"苹果",
+                    price: 10,
+                    isSelect: false
+                },{
+                    name:"菠萝",
+                    price: 12,
+                    isSelect: false
+                },{
+                    name:"香蕉",
+                    price: 15,
+                    isSelect: false
+                },{
+                    name:"梨子",
+                    price: 8,
+                    isSelect: false
+                },{
+                    name:"菠萝蜜",
+                    price: 20,
+                    isSelect: false
+                },{
+                    name:"西瓜",
+                    price: 5,
+                    isSelect: false
+                }
+            ]
+         },
+         methods:{
+
+         },
+         computed:{
+             isAllSelect:{
+                 get(){
+                     return this.fruits.every(fruit => {
+                         return fruit.isSelect
+                     })
+                 },
+                 set(bol){
+                     this.fruits.forEach(fruit => {
+                         fruit.isSelect = bol
+                     })
+                 }
+             }
+         }
+     })
+
+
+
+
+ </script>
+</body>
+</html>
