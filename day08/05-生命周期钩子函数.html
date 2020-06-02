@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>filter</title>
+</head>
+<body>
+<div id="app">
+    {{ msg }}
+</div>
+
+
+<script>
+
+    let vm = new Vue({
+        el:"#app",
+        data:{
+         msg:"hello"
+        },
+        // beforeCreate(){
+        //     // 通常不会再这里做任何事情, 了解
+        //     console.log("vue初始化前")
+        //     console.log(this)
+        //     debugger;
+        // },
+        // created(){
+        //     // 通常会在这个生命周期里发送ajax请求数据
+        //     console.log("vue初始化完毕")
+        //     console.log(this.msg)
+        //     debugger;
+        // },
+        // beforeMount(){
+        //     获取更新后的新的DOM
+        //     console.log("虚拟DOM已经出处理完毕,页面还没有渲染")
+        //     console.log(this)
+        //     debugger;
+        // },
+
+
+        // mounted(){
+        //   console.log("页面渲染完毕")
+        //     debugger;
+        // },
+        // beforeUpdate(){
+        //     console.log("数据已经发生更新,但是页面还没有更改")
+        //     console.log(this)
+        //     debugger;
+        // },
+        // updated(){
+        //   console.log("数据已经更新,页面也更新完毕")
+        //     debugger;
+        // },
+
+        // beforeDestroy(){
+        //     console.log('实例/组件被销毁之前')
+        //     debugger;
+        // },
+        destroyed(){
+            console.log("实例/组件被销毁完毕")
+        },
+        methods:{
+        },
+        computed:{
+        },
+        watch:{
+        },
+        filters:{
+        }
+    })
+
+
+
+
+
+
+</script>
+</body>
+</html>

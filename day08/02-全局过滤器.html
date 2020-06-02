@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>filter</title>
+</head>
+<body>
+<div id="app">
+
+    <h4>
+        filter过滤器语法
+    </h4>
+    <div v-for="fruit in fruits">
+        {{ fruit.name }}的价格是: {{ fruit.price | filterprice }}元/斤
+    </div>
+
+
+
+</div>
+
+<div id="app2">
+    <h2> 这是第二个vue实例</h2>
+    {{ price | filterprice}}
+</div>
+
+<script>
+    // 全局过滤器
+    // console.dir(Vue )
+    Vue.filter("filterprice", function(price){
+        return (price/100).toFixed(2)
+    })
+
+
+    // 在vue选项中定义的内容都是局部的
+    // 因此在选项 filters中定义的过滤器只能在当前的vue实例中使用
+    let vm = new Vue({
+        el:"#app",
+        data:{
+            fruits:[
+                {
+                    name:"苹果",
+                    price:1035
+                },
+                {
+                    name:"李子",
+                    price:1238
+                },
+                {
+                    name:"香蕉",
+                    price:1554
+                },
+                {
+                    name:"草莓",
+                    price:2142
+                }
+            ],
+            price:5816
+        },
+        methods:{
+            handleFruits(){
+                return this.fruits.map(fruit =>{
+                    return {
+                        name: fruit.name,
+                        price : (fruit.price/100).toFixed(2)
+                    }
+                })
+            }
+        },
+        computed:{
+            changeFruits(){
+                return this.fruits.map(fruit =>{
+                    return {
+                        name: fruit.name,
+                        price : (fruit.price/100).toFixed(2)
+                    }
+                })
+            }
+        },
+        watch:{},
+        filters:{
+            // filterPrice(price){
+            //     console.log(price)
+            //     return (price/100).toFixed(2)
+            // },
+            filterPriceSymbol(price,symbol){
+                console.log(symbol)
+                return symbol + (price/100).toFixed(2)
+            },
+            addSymbol(price,symbol){
+                // console.log(price)
+                return symbol + price
+            }
+        }
+    })
+
+
+    // 第二个vue实例
+    new Vue({
+        el:"#app2",
+        data:{
+            price: 5186
+        }
+    })
+
+
+
+
+</script>
+</body>
+</html>

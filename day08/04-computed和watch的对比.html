@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>filter</title>
+</head>
+<body>
+<div id="app">
+    <h4>普通使用</h4>
+    {{ msg  }}
+
+    <h4>计算属性</h4>
+    {{ newMsg }}
+    {{ fullname }}
+
+
+    <h4>侦听器</h4>
+    {{ message }}
+    {{ full }}
+</div>
+
+
+<script>
+
+    let vm = new Vue({
+        el:"#app",
+        data:{
+            msg:"hello",
+            message:"",
+            firstname:"张",
+            lastname:'三',
+            full:"张 三"
+        },
+        methods:{
+        },
+        computed:{
+            newMsg(){
+                console.log('computed')
+                return this.msg + " " + "vue"
+            },
+            fullname(){
+                // 计算属性会更加你所有的依赖返回新属性
+                return this.firstname + ' ' + this.lastname
+            }
+        },
+        watch:{
+            msg:{
+                handler(){
+                    this.message = this.msg + ' '+ 'vue'
+                },
+                immediate: true
+            },
+            firstname(){
+                this.full = this.firstname  + ' ' + this.lastname
+            },
+            lastname(){
+                this.full = this.firstname  + ' ' + this.lastname
+            }
+        },
+        filters:{
+
+        }
+    })
+
+
+
+
+
+
+</script>
+</body>
+</html>
