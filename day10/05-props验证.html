@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <my-component></my-component>
+
+</div>
+
+
+<!-- 父组件模板-->
+<template id="mycom">
+    <div>
+        <h2>我是父组件</h2>
+        父组件的 数据: {{ msg}}
+        <button @click="handleClickCom">点击改变父组件自己数据</button>
+
+<!--        父组件是用子组件就是两个组件的接口-->
+        <my-son
+                my-name="张三"
+                :my-age="15"
+
+        ></my-son>
+
+
+
+    </div>
+</template>
+
+<!-- 子组件模板 -->
+<template id="myson">
+    <div>
+        <h3>我是子组件</h3>
+        <p>我是子组件数据: {{msg }}</p>
+        <p>
+            接受父组件的数据:{{myName}},{{myAge}}
+        </p>
+        <p>
+            水果: {{ myfruit }}
+        </p>
+        <p>
+            <button @click="handleClick">点击改变name</button>
+        </p>
+    </div>
+</template>
+
+<script>
+
+    // 6. props属性的验证
+    // props的值如果是一个字符串数据,只是表示子组件需要接受那些数据
+    // 如果需要对于props接收到数据进行验证就需要使用对象的写法
+
+    // props接收到 数据可以定义多类名
+
+
+    // (子组件)
+    let MySon = {
+        // props就表示子组件接受父组件的数据
+        // props:["myName","MyAge", "fruit"],
+        props:{
+            myName: {
+                type: String,  // 验证数据类型
+                // required: true,  // 这个数据为必须传递的数据
+                default: "嘿嘿",    // 默认值不和必传项同时使用
+
+
+                // validator(value){
+                    // console.log(value)
+                //     return true
+                // }
+            },
+            myAge:{
+                type: [Number,String],
+                // validator(value){
+                //     return value >= 18
+                // }
+            },
+            fruit: {
+                 type:Array,
+                 default(){   // 如果数据是引用类型,默认值必须是一个函数,返回默认值
+                    return [];
+                 }
+            }
+        },
+
+        template:`#myson`,
+        data(){
+            return {
+                msg:'hello',
+                myfruit: JSON.parse(JSON.stringify(this.fruit)),
+                age: this.MyAge
+            }
+        },
+        methods:{
+            handleClick(){
+
+                // 子组件修改自己的数据
+                this.myfruit.name = "梨子"
+            }
+        }
+    }
+
+
+
+    // (父组件)
+    let MyComponent = {
+        template:`#mycom`,
+        data(){
+           return {
+               msg:"hello",
+               user:{
+                   name:"张三",
+                   age:18
+               },
+               fruit:{
+                   name:"苹果",
+                   price: 12
+               }
+           }
+        },
+        components:{
+            MySon
+        },
+        methods:{
+            handleClickCom(){
+                this.fruit.name = "香蕉"
+            }
+        }
+    }
+
+
+    // vue实例
+    new Vue({
+        el:"#app",
+        data:{
+
+        },
+        components:{
+            MyComponent
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <my-component></my-component>
+<!--    <my-son></my-son>-->
+    {{msg }}
+</div>
+
+
+<script>
+
+    // 1. 组件的嵌套使用
+
+    // 创建一个组件(子组件)
+    let MySon = {
+        template:`<h2>我是一个子组件</h2>`
+    }
+
+    // 创建组件(父组件)
+    let MyComponent = {
+        template:`<div>
+            <my-son></my-son>
+            我是一个组件
+        </div>`,
+        data(){
+           return {
+               msg:"hello"
+           }
+        },
+        components:{
+            MySon
+        },
+        methods:{},
+        computed:{},
+        filters:{},
+        watch:{},
+
+    }
+
+    new Vue({
+        el:"#app",
+        data:{
+            msg:"hello"
+        },
+        components:{
+            MyComponent
+        },
+        methods:{},
+        computed:{},
+        filters:{},
+        watch:{},
+    })
+</script>
+</body>
+</html>

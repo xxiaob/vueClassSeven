@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <my-component></my-component>
+
+</div>
+
+
+<!-- 父组件模板-->
+<template id="mycom">
+    <div>
+        <h2>我是父组件</h2>
+        父组件的 数据: {{ msg}}
+
+<!--        父组件是用子组件就是两个组件的接口-->
+        <my-son :my-name="user.name" :my-age="user.age"></my-son>
+
+    </div>
+</template>
+
+<!-- 子组件模板 -->
+<template id="myson">
+    <div>
+        <h3>我是子组件</h3>
+        <p>我是子组件数据: {{msg }}</p>
+        <p>
+            接受父组件的数据:{{myName}},{{MyAge}}
+        </p>
+    </div>
+</template>
+
+<script>
+
+    // 1. 父组件向子组件传值(通过props传值)
+    // 每一个组件都是封闭, 不能直接使用别的组件中的数据
+
+    // (子组件)
+    let MySon = {
+        // props就表示子组件接受父组件的数据
+        props:["myName","MyAge"],
+        template:`#myson`,
+        data(){
+            return {
+                msg:'hello'
+            }
+        }
+    }
+
+    // (父组件)
+    let MyComponent = {
+        template:`#mycom`,
+        data(){
+           return {
+               msg:"hello",
+               user:{
+                   name:"张三",
+                   age:18
+               }
+           }
+        },
+        components:{
+            MySon
+        },
+
+    }
+
+
+    // vue实例
+    new Vue({
+        el:"#app",
+        data:{
+
+        },
+        components:{
+            MyComponent
+        }
+    })
+</script>
+</body>
+</html>
