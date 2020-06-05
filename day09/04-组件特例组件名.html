@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>创建使用组件</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+
+    <my-componet></my-componet>
+    <my-componet></my-componet>
+    <my-com-two></my-com-two>
+</div>
+
+
+
+<script>
+
+
+
+    // 关于组件名记住一个元素,
+    // 在定义组件时使用大驼峰命名, 在使用组件使用连字符
+
+    let MyComponet =  {
+        template:`<h2>我是局部组件</h2>`
+    }
+    let MyComTwo = {
+        template: `<h3>第二个组件</h3>`
+    }
+
+    let vm = new Vue({
+        el:"#app",
+        components:{
+            // 组件名可以是连字符,
+            // "my-compent":MyComponet
+
+            // 也可以是大驼峰 推荐驼峰命名
+            MyComponet,MyComTwo
+        }
+    })
+
+
+
+
+
+</script>
+</body>
+</html>

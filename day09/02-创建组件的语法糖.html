@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>创建使用组件</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+<!--    3. 组件的使用, 其实就是把我们自定义的组件名当成自定义标签-->
+    <greeting></greeting>
+    <greeting></greeting>
+    <greeting></greeting>
+
+
+</div>
+
+
+<script>
+    // 1. 组件的选项对象
+
+    let MyComponent = {
+        template:`
+            <div>
+                <p>大家好,我叫{{ name }}</p>
+                <button @click="changeName">点击切换名字</button>
+            </div>
+        `,
+        data(){
+            return {
+                name:"渣渣辉"
+            }
+        },
+        methods:{
+            changeName(){
+                this.name = "古天乐"
+            }
+        }
+    }
+
+
+
+    // 2. 把选项对象创建为组件实例
+    // 第一个参数是组件名, 第二个参数是组建的 选项对象
+    // 组件名千万不要和合法的标签名重名
+    Vue.component("Greeting", {
+
+    })
+
+
+    var obj = {}
+
+    function wuwei(){}
+
+    wuwei(obj)
+
+    wuwei({
+
+    })
+
+
+    let vm = new Vue({
+        el:"#app",
+        data:{},
+        methods:{}
+    })
+
+
+
+</script>
+</body>
+</html>

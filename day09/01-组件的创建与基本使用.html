@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>创建使用组件</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+<!--    3. 组件的使用-->
+<!--    <greeting></greeting>-->
+<!--    <greeting></greeting>-->
+<!--    <greeting></greeting>-->
+</div>
+
+
+<script>
+    // 1. 创建组件的构造器
+    // 所谓的构造器就是归于Vue构造函数进行扩展
+    // 组件实例和vue根实例其实差的不大
+    let MyComponent = Vue.extend({
+        template:`
+            <div>
+                <p>大家好,我叫{{ name }}</p>
+                <button @click="changeName">点击切换名字</button>
+            </div>
+        `,
+        data(){
+            return {
+                name:"渣渣辉"
+            }
+        },
+        methods:{
+            changeName(){
+                this.name = "古天乐"
+            }
+        }
+    })
+
+
+
+    // 2. 把组件的构造器创建为组件实例
+    // console.dir(Vue)
+    Vue.component("Greeting", MyComponent)
+    //
+    // let vm = new Vue({
+    //     el:"#app",
+    //     data:{},
+    //     methods:{}
+    // })
+
+
+    // 把扩展器直接实例化为vue实例
+    new MyComponent({
+        el:"#app"
+    })
+</script>
+</body>
+</html>

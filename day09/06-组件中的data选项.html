@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>创建使用组件</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    {{msg}}
+    <my-component></my-component>
+    <my-component></my-component>
+    <my-component></my-component>
+
+</div>
+<div id="app2"></div>
+
+<template id="mycom">
+    <div class="mycomponet">
+        <p>点击{{count}}</p>
+        <div><button @click="handleClick">点击</button></div>
+    </div>
+</template>
+
+
+
+<script>
+
+
+
+    // 关于组件名记住一个元素,
+    // 在定义组件时使用大驼峰命名, 在使用组件使用连字符
+
+    let data  = {
+        count:0
+    }
+
+    let MyComponent =  {
+        template:"#mycom",
+        data(){
+            return data
+        },
+        methods:{
+            handleClick(){
+                this.count++
+            }
+        }
+    }
+
+
+
+    let vm = new Vue({
+        el:"#app",
+        data: {
+            msg:"haha"
+
+        },
+        components:{
+            MyComponent
+
+        }
+    })
+
+
+
+
+
+</script>
+</body>
+</html>

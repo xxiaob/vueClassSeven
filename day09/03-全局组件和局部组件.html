@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>创建使用组件</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+
+    <greeting></greeting>
+    <greeting></greeting>
+    <greeting></greeting>
+
+    <my-com></my-com>
+</div>
+
+
+<div id="app2">
+    <greeting></greeting>
+<!--    <my-com></my-com>-->
+</div>
+
+<script>
+
+
+
+    // 1. 全局组件
+    // 通过Vue构造函数的component创建的组件是全局组件
+    // 全局组件和在也任意的vue示例和组件中使用
+    Vue.component("Greeting", {
+        template:`
+            <div>
+                <p>大家好,我叫{{ name }}</p>
+                <button @click="changeName">点击切换名字</button>
+            </div>
+        `,
+        data(){
+            return {
+                name:"渣渣辉"
+            }
+        },
+        methods:{
+            changeName(){
+                this.name = "古天乐"
+            }
+        }
+    })
+
+
+    // 2. 局部组件
+    // 2.1 通过扩展器创建局部组件
+    // let MyCom = Vue.extend({
+    //     template:`<h2>我是局部组件</h2>`
+    // })
+
+    // 2.2 选项对象创建局部组件
+    // let MyCom = {
+    //     template:`<h2>我是局部组件</h2>`
+    // }
+
+
+
+
+    let vm = new Vue({
+        el:"#app",
+        data:{},
+        methods:{},
+        components:{
+            // "my-com":MyCom,
+
+            "my-com":{
+                template:`<h2>我是局部组件</h2>`
+            }
+        }
+    })
+
+
+
+    new Vue({
+        el:"#app2"
+    })
+
+
+</script>
+</body>
+</html>

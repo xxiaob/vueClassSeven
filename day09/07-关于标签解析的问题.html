@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>创建使用组件</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+<!--    tbody里面只能放tr标签-->
+<!--     ul li  ol li  select option-->
+<!--    要注意一些标签嵌套的规格,否则标签解析可能就会出问题-->
+    <table>
+        <tbody>
+<!--            <my-component></my-component>-->
+<!--            <my-component></my-component>-->
+<!--            <my-component></my-component>-->
+            <tr is="my-component"></tr>
+            <tr is="my-component"></tr>
+            <tr is="my-component"></tr>
+        </tbody>
+    </table>
+
+
+</div>
+<div id="app2"></div>
+
+<template id="mycom">
+    <tr>
+        <td>1</td>
+        <td>2</td>
+    </tr>
+</template>
+
+
+
+<script>
+
+
+
+    // 关于组件名记住一个元素,
+    // 在定义组件时使用大驼峰命名, 在使用组件使用连字符
+
+
+
+    let MyComponent =  {
+        template:"#mycom",
+
+    }
+
+
+
+    let vm = new Vue({
+        el:"#app",
+        data: {
+
+
+        },
+        components:{
+            MyComponent
+
+        }
+    })
+
+
+
+
+
+</script>
+</body>
+</html>

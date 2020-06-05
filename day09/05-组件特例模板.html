@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>创建使用组件</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <my-component></my-component>
+
+</div>
+<div id="app2"></div>
+
+<template id="mycom">
+    <div class="mycomponet">
+        <h2>这是template模板中的内容</h2>
+        <div>我是div标签</div>
+    </div>
+</template>
+
+<script type="text/x-template" id="mycon">
+    <div class="mycomponet">
+        <h2>我是局部组件</h2>
+        <div>我是div标签</div>
+    </div>
+</script>
+
+<script>
+
+
+
+    // 关于组件名记住一个元素,
+    // 在定义组件时使用大驼峰命名, 在使用组件使用连字符
+
+    let MyComponent =  {
+
+        template:"#mycom"
+    }
+
+
+
+    let vm = new Vue({
+        el:"#app",
+
+        components:{
+            MyComponent
+
+        }
+    })
+
+
+
+
+
+</script>
+</body>
+</html>
