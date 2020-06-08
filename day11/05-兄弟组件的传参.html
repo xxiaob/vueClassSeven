@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <my-input @add="handleClick"></my-input>
+    <my-comment :comments="comments" @delete="deleteBtn"></my-comment>
+</div>
+
+
+<template id="myone">
+    <div>
+        <input type="text" v-model="message">
+        <button @click="handleClick" >发表</button>
+    </div>
+</template>
+
+
+<template id="mytwo">
+
+    <div>
+        <h2>评论内容</h2>
+        <ul>
+            <li v-for="(comment,index) in comments" :key="index">
+                {{ comment }}
+                <button @click="deleteBtn(index)">X</button>
+            </li>
+        </ul>
+    </div>
+</template>
+<script>
+    let MyInput = {
+        template:"#myone",
+        data(){
+            return{
+                message:"",
+            }
+        },
+        methods:{
+            handleClick(){
+                // 先期判断
+                let message = this.message.trim();
+                if(!message){
+                    console.log("请输入正确内容")
+                    return;
+                }
+
+                this.$emit("add", message)
+
+                this.message = ''
+            }
+        }
+    }
+
+    let MyComment = {
+        props:["comments"],
+        template:"#mytwo",
+        methods:{
+            deleteBtn(index){
+                this.$emit("delete",index)
+            }
+        }
+    }
+
+
+    let vm = new Vue({
+        el:"#app",
+        data:{
+
+            comments:[]
+        },
+        methods:{
+            handleClick(message){
+
+                this.comments.push(message)
+
+            },
+            deleteBtn(index){
+                // console.log(index)
+                this.comments.splice(index,1)
+            }
+        },
+        components:{
+            MyInput,MyComment
+        }
+    })
+
+
+</script>
+</body>
+</html>

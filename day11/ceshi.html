@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+   <my-one :count="count"></my-one>
+    <my-two @increment="increment"></my-two>
+</div>
+
+
+
+
+
+<script>
+    let MyOne = {
+        props:["count"],
+        template:`
+            <div>你点击了{{count}}次</div>
+        `,
+
+    }
+
+    let MyTwo = {
+
+        template:`
+            <button @click="hanleClick">点击</button>
+        `,
+        methods: {
+            hanleClick(){
+                console.log(11)
+                this.$emit("increment")
+            }
+        }
+
+    }
+
+
+    let vm = new Vue({
+        el:"#app",
+        data:{
+            count:0
+
+        },
+        methods:{
+            increment(){
+                console.log(222)
+                this.count++
+            }
+        },
+        components:{
+            MyOne,MyTwo
+        }
+    })
+
+
+</script>
+</body>
+</html>

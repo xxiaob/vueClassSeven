@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <my-com :fruits="fruits" @add="addfruit"></my-com>
+</div>
+<template id="mycom">
+    <div>
+        <ol>
+            <li v-for="(fruit,index) in fruits" :key="index">
+                {{fruit.name }}: {{ fruit.price}}
+            </li>
+        </ol>
+        <button @click="addFruit">添加水果</button>
+    </div>
+</template>
+
+<script>
+    // 子组件通过自定义事件向父组件传递参数
+    // 思路
+    // 1. 在父组件上绑定一个自定义的事件
+    // 2. 子组件在自己的事件处理函数中通过$emit触发自定义事件
+    // 3. 子组件在触发自定义事件时可以给自定义事件传递参数
+    // 4. 这样就达到了子组件向父组件传参的目的
+    let MyCom = {
+        props:["fruits"],
+        template:"#mycom",
+        methods:{
+            addFruit(){
+                console.log(11)
+                this.$emit("add",{
+                    name:"菠萝",
+                    price:23
+                })
+            }
+        }
+    }
+
+    let vm = new Vue({
+        el:"#app",
+        data:{
+            fruits:[
+                {
+                    name:"苹果",
+                    price:20
+                },
+                {
+                    name:"香蕉",
+                    price:22
+                }
+            ]
+        },
+        methods:{
+            addfruit(value){
+                console.log(value)
+                this.fruits.push(value)
+            }
+        },
+        components:{
+            MyCom
+        }
+    })
+
+
+</script>
+</body>
+</html>

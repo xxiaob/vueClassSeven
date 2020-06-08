@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+<!--    <ol>-->
+<!--        <li v-for="(fruit,index) in fruits" :key="index">-->
+<!--            {{ fruit }}-->
+<!--        </li>-->
+<!--    </ol>-->
+    <ol>
+        <my-fruit
+                v-for="(fruit,index) in fruits"
+                :key = "index"
+                :fruit="fruit"
+        ></my-fruit>
+    </ol>
+</div>
+<template id="mycom">
+<!--    <ol>-->
+<!--        <li v-for="(fruit,index) in fruits" :key="index">-->
+<!--            {{ fruit }}-->
+<!--        </li>-->
+<!--    </ol>-->
+
+    <li>{{ fruit }}</li>
+</template>
+
+<script>
+    // v-for循环可以遍历普通的DOM元素
+    // 也可以在组件上遍历数据,复用组件
+    let MyFruit = {
+        props:["fruit"],
+        template:"#mycom",
+    }
+
+
+    new Vue({
+        el:"#app",
+        data:{
+            fruits:[
+                "苹果","梨子","香蕉","菠萝"
+            ]
+        },
+        methods:{
+
+        },
+        components:{
+            MyFruit
+        }
+    })
+
+</script>
+</body>
+</html>

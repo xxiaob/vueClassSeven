@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    {{ count }}
+    <div>
+        <button @click="clickBtn">实例上的按钮</button>
+        <button @click="clickBtn2">解绑自定义事件</button>
+    </div>
+    <my-com></my-com>
+</div>
+<template id="mycom">
+    <button @click="handleClick">点击</button>
+</template>
+
+<script>
+    let MyCom = {
+        template:"#mycom",
+        methods:{
+            handleClick(){
+                console.log(111)
+                console.log(this)
+                this.$emit('count')
+            }
+        }
+    }
+
+    let vm = new Vue({
+        el:"#app",
+        data:{
+            count:0
+        },
+        methods:{
+            clickBtn(){
+                console.log(this)
+                // 触发了一个自定义事件(发布)
+                this.$emit("count", "hello ")
+            },
+            clickBtn2(){
+                // 解绑自定义事件
+                this.$off("count")
+            }
+        },
+        components:{
+            MyCom
+        }
+    })
+
+    // 绑定一个自定义的事件(订阅)
+    // vm.$on('count', function(msg){
+    //     console.log(111)
+    //     console.log(msg)
+    // })
+    // vm.$on('count', function(msg){
+    //     console.log(111)
+    //     console.log(msg)
+    // })
+    // vm.$on('count', function(msg){
+    //     console.log(111)
+    //     console.log(msg)
+    // })
+
+
+    // vm.$once('count', function(){
+    //     console.log(111)
+    // })
+
+</script>
+</body>
+</html>

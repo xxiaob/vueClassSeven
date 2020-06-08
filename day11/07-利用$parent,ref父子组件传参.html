@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <div>父组件的数据:{{user}}</div>
+    <my-com ref="com"></my-com>
+    <button @click="handleClick">向子组件传参</button>
+</div>
+
+
+<template id="mycom">
+    <div>
+        子组件 {{ msg }}
+        <button @click="handleClickChild">向父组件传参</button>
+        <div>
+            <my-son></my-son>
+        </div>
+    </div>
+</template>
+
+
+<script>
+    // 在父组件中如何调用子组件的方法
+    // 在子组件如何调用父组件的方法
+
+
+    // ref属性使用在普通DOM元素上,获取的 是原生DOM元素
+    // ref属性使用在组件省上,获取就是组件的实例对象
+
+    // 1.  父组件获取子组件的实例向子组件传参
+    // 1.1 可以通过$children来获取子组件实例,也可以通过$refs获取
+
+    // 2. 子组件获取父组件的实例向父组件传参
+    // 2.1 子组件通过$parent获取父组件示例
+
+    // 获取根实例 $root
+
+    let MySon = {
+        template: `<button @click="click">点击获取</button>`,
+        methods:{
+            click(){
+                console.log(this)
+                this.$root.changeParent({
+                    age:18
+                })
+            }
+        }
+    }
+
+    let MyCom = {
+        template:"#mycom",
+        data(){
+            return {
+                msg:"child"
+            }
+        },
+        methods:{
+            changeMsg(name){
+                console.log("change")
+                this.msg = name
+            },
+            handleClickChild(){
+                console.log(this)
+                // 在子组件中执行父组件的方法
+                this.$parent.changeParent({
+                    age:18
+                })
+            }
+        },
+        components:{
+            MySon
+        }
+    }
+
+    console.log(Vue)
+    let vm = new Vue({
+        el:"#app",
+        data:{
+            user:{
+                name:"张三"
+            }
+        },
+        methods:{
+            handleClick(){
+                // console.log(this)
+                // console.log(this.$children[0])
+
+                console.log(this.$refs.com)
+                this.$refs.com.changeMsg(this.user.name)
+            },
+            changeParent(value){
+                console.log(value)
+                this.user = Object.assign({},this.user,value)
+
+                console.log("parent")
+            }
+        },
+        components:{
+            MyCom
+        }
+    })
+
+
+</script>
+</body>
+</html>

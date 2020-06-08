@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <my-com :name="user.name"  class="box" :style="style"></my-com>
+</div>
+<template id="mycom">
+    <div class="wrap" :style="style">
+        我是子组件
+        <div>用户名:{{ name }}</div>
+    </div>
+<!--    <input type="text">-->
+</template>
+
+<script>
+    // 1. 理解什么是非Props属性
+    // 在组件中明确的使用props接受的属性成为Props属性
+    // 没有明确使用props属性接收的属性成为非Props属性
+
+    // 2. 非Props属性如果跟组件的根标签属性重名怎么办
+    // 2.1 替换  如果标签属性的值是不允许多个值的非Props属性就会替换原有组件根标签上的属性
+    // 2.2 合并
+    let MyCom = {
+        props:["name"],
+        template:"#mycom",
+        data(){
+            return {
+                style:{
+                    color:"red"
+                }
+            }
+        }
+    }
+
+    new Vue({
+        el:"#app",
+        data:{
+            user:{
+                name:"张三",
+                age:18
+            },
+            style:{
+                fontSize:"30px"
+            }
+        },
+        methods:{
+
+        },
+        components:{
+            MyCom
+        }
+    })
+
+</script>
+</body>
+</html>
