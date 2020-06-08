@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+<!--
+  默认使用插槽是,如果不指定将内容插入的具体的插槽中,
+  那么默认都是插入到默认插槽中
+-->
+    <my-tem>
+<!--        利用slot属性来制定将内容插入到哪一个插槽中-->
+        <h2 slot="title">今天天气真好</h2>
+
+        <p>想说一段话</p>
+        <p>晴天霹雳一声雷</p>
+        <p>吓得宝宝说的不会话</p>
+
+        <span slot="time">2020年6月8日</span>
+    </my-tem>
+</div>
+
+<template id="mytem">
+    <div class="article">
+        <div class="header">
+<!--            通过name属性给插槽去了一个名字 title -->
+            <slot name="title"></slot>
+        </div>
+        <div class="content">
+<!--            默认插槽-->
+            <slot></slot>
+        </div>
+        <div class="time">
+<!--           名字为time的具名插槽 -->
+            <slot name="time"></slot>
+        </div>
+
+    </div>
+</template>
+
+<script>
+    let MyTem = {
+
+        template:"#mytem",
+        data(){
+            return {
+
+            }
+        },
+        methods:{
+
+        }
+    }
+
+    new Vue({
+        el:"#app",
+        data: {
+
+        },
+        methods:{
+
+        },
+        components: {
+            MyTem
+        }
+    })
+</script>
+</body>
+</html>

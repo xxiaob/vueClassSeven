@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+<!--    1.native-->
+<!--
+    通过props 父组件向子组件传值
+    通过自定义事件  子组件向父组件传值
+    props和自定义事件的组合  兄弟组件的传值(通信)
+    bus总线机制     非父子组件传值(通信)
+    $parent  $children ref $root  获取父子组件或根组件实例
+
+-->
+    {{ msg }}
+
+<!--
+    组件上绑定的事件都是自定义事件
+    .native 会将组件上与原生事件名相同的事件处理为原生事件
+-->
+    <my-com @click.native="parentClick('native修饰符')"></my-com>
+</div>
+
+<template id="mycom">
+    <div>
+        子组件
+        <button @click="handleClick"> 点击</button>
+    </div>
+</template>
+
+<script>
+    let MyCom = {
+        template:"#mycom",
+        data(){
+            return {
+                msg:"子组件的数据"
+            }
+        },
+
+        methods:{
+            handleClick(){
+                // this.$emit("click", this.msg)
+            }
+        }
+    }
+
+    new Vue({
+        el:"#app",
+        data: {
+            msg:""
+        },
+        methods:{
+            parentClick(val){
+                console.log(val)
+                this.msg = val
+            }
+        },
+        components: {
+            MyCom
+        }
+    })
+</script>
+</body>
+</html>

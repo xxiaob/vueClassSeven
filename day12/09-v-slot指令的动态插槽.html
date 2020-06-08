@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <my-article title="haha">
+        <template>
+            <h2>我是h2标签</h2>
+        </template>
+    </my-article>
+    <div>
+        <button @click="changeName">点击切换插槽</button>
+    </div>
+</div>
+
+<template id="mymsg">
+   <div>
+       <div class="title">
+           <slot name="title"></slot>
+       </div>
+       <div class="content">
+           <slot name="content"></slot>
+       </div>
+       <button @click="handleClick">点击</button>
+   </div>
+</template>
+
+<script>
+    let MyArticle = {
+        props:['title'],
+        template:"#mymsg",
+        data(){
+            return {
+                msg:"aa"
+            }
+        },
+        methods:{
+            handleClick(){
+                console.log(this)
+                console.log(this.title)
+                console.log( this.$props.title)
+
+
+
+            }
+        }
+    }
+
+    new Vue({
+        el:"#app",
+        data: {
+            name:"title"
+        },
+        methods:{
+            changeName(){
+                this.name="content"
+            }
+        },
+        components: {
+            MyArticle
+        }
+    })
+</script>
+</body>
+</html>

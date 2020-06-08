@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+<!--    如何将组件标签里嵌套的内容传递给子组件 -->
+<!--
+    编译作用域
+    子组件模板中的数据在子组件中编译
+    父组件模板中的数据在父组件中编译
+
+ -->
+<!--    <my-button>{{ btn }}</my-button>-->
+
+<!--
+    插槽的基本使用
+
+-->
+    <my-button>{{ btn }}</my-button>
+
+<!--    插槽的默认值-->
+    <my-button></my-button>
+    <my-button>
+        <span>确定</span>
+    </my-button>
+</div>
+
+<template id="mybtn">
+    <button>
+<!--        插槽标签 slot-->
+<!--        插槽标签中间嵌套的内容就是默认值,
+            如果父组件在使用子组件时没有想子组件的插槽插入内容就会启用默认值
+-->
+        <slot>按钮</slot>
+    </button>
+</template>
+
+<script>
+    let MyButton = {
+
+        template:"#mybtn",
+        data(){
+            return {
+                btn: "点击"
+            }
+        },
+        methods:{
+
+        }
+    }
+
+    new Vue({
+        el:"#app",
+        data: {
+            btn:"确定"
+        },
+        methods:{
+
+        },
+        components: {
+            MyButton
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+
+<!--    作用于插槽是用在普通的DOM元素上或template标签上-->
+    <my-button v-slot="{btn}">
+
+            {{ btn}}
+
+    </my-button>
+
+</div>
+
+<template id="mybtn">
+    <button>
+        <slot :btn="btn"></slot>
+    </button>
+</template>
+
+<script>
+    let MyButton = {
+
+        template:"#mybtn",
+        data(){
+            return {
+                btn: "点击",
+
+            }
+        },
+        methods:{
+
+        }
+    }
+
+    new Vue({
+        el:"#app",
+        data: {
+            btn:"确定"
+        },
+        methods:{
+
+        },
+        components: {
+            MyButton
+        }
+    })
+</script>
+</body>
+</html>

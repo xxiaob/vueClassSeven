@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+
+<!--    <my-com-->
+<!--        :count="count"-->
+<!--        @update:count = "(val) => count = val"-->
+<!--    ></my-com>-->
+
+    <my-com
+            :count.sync="count"
+    ></my-com>
+</div>
+
+<template id="mycom">
+    <div>
+        {{ count }}
+        <button @click="handleClick"> 点击</button>
+    </div>
+</template>
+
+<script>
+    let MyCom = {
+        props:["count"],
+        template:"#mycom",
+        data(){
+            return {
+               number: this.count
+            }
+        },
+
+        methods:{
+            handleClick(){
+                this.number++
+                // console.log(this.number)
+                this.$emit("update:count", this.number)
+            }
+        }
+    }
+
+    new Vue({
+        el:"#app",
+        data: {
+            count: 0
+        },
+        methods:{
+            parentClick(val){
+                console.log(val)
+                this.count = val
+            }
+        },
+        components: {
+            MyCom
+        }
+    })
+</script>
+</body>
+</html>
